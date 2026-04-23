@@ -8,7 +8,9 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 @app.route("/")
 def index():
-    with open("scrappy.html", encoding="utf-8") as f:
+    import os
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(base_dir, "scrappy.html"), encoding="utf-8") as f:
         return f.read()
 
 @app.route("/api/chat", methods=["POST"])
