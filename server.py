@@ -27,6 +27,7 @@ def chat():
     resp = requests.post(url, json=payload)
     result = resp.json()
 
+    print("GEMINI RESPONSE:", result)
     raw = result.get("candidates", [{}])[0].get("content", {}).get("parts", [{}])[0].get("text", "")
 
     # Strip markdown code blocks if present
