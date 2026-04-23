@@ -2,13 +2,14 @@ import os
 import requests
 from flask import Flask, request, jsonify, send_from_directory
 
-app = Flask(__name__, static_folder=".")
+app = Flask(__name__)
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 @app.route("/")
 def index():
-    return send_from_directory(".", "scrappy.html")
+    with open("scrappy.html", encoding="utf-8") as f:
+        return f.read()
 
 @app.route("/api/chat", methods=["POST"])
 def chat():
