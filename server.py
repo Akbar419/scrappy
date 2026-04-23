@@ -27,6 +27,7 @@ def chat():
     resp = requests.post(url, json=payload)
     result = resp.json()
     text = result.get("candidates", [{}])[0].get("content", {}).get("parts", [{}])[0].get("text", "")
+    text = text.strip().replace("```json", "").replace("```", "").strip()
 
     return jsonify({"text": text})
 
